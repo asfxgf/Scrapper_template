@@ -4,10 +4,21 @@ class VehiclesController < ApplicationController
   # GET /vehicles or /vehicles.json
   def index
     @vehicles = Vehicle.all
+    # à partir d'ici, c'est le code du dwnload xls
+    respond_to do |format|
+      format.xlsx {
+        response.headers[
+          'Content-Disposition'
+        ] = "attachment; filename=' vehicles.xlsx'"
+      }
+      format.html { render :index }
+    end
+    # fin download xls
   end
 
   def scrape
-    url = 'https://www.timeout.fr/paris/restaurant/bon-restaurant-50-liste'
+    # Entrer l'url a scrapper ici :
+    url = 'https://parissecret.com/les-plus-beaux-restaurants-branches-et-festifs-de-paris/'
     response = VehiclesSpider.process(url)
     if response[:status] == :completed && response[:error].nil?
       flash.now[:notice] = "Successfully scraped url"

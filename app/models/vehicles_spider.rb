@@ -9,10 +9,11 @@ class VehiclesSpider < Kimurai::Base
 
   def parse(response, url:, data: {})
     #response.xpath("//div[@class='c1herz6b dir dir-ltr']").each do |vehicle|
-    response.xpath("//div[@class='_title_tpquo_9']").each do |vehicle|
+    #Entrer la div parent et enfant avec les bonnes informations. Voir le template plus bas (le truc entre commentaire) pour avoir des exemples
+    response.xpath("//p[@class='lite-title']").each do |vehicle|
 
     item = {}
-    item[:title] = vehicle.css('h3._h3_cuogz_1')&.text&.squish
+    item[:title] = vehicle.css('a')&.text&.squish
 =begin
   // Infos valides
     item[:title]      = vehicle.css('h2.listing-row__title')&.text&.squish

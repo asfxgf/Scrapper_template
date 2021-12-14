@@ -39,3 +39,11 @@
 <br>
 
 <%= link_to 'New Vehicle', new_vehicle_path %>
+<p id="notice"><%= notice %></p>
+
+<!-- A partir d'ici c'est le code qui permet de rentrer les infos en spreadsheets-->
+<h1>Items</h1>
+<%=
+  link_to 'Download as Excel',
+  vehicles_path(format: :xlsx)
+%>
