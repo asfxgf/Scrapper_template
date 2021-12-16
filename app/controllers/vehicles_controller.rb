@@ -18,7 +18,7 @@ class VehiclesController < ApplicationController
 
   def scrape
     # Entrer l'url a scrapper ici :
-    url = 'https://parissecret.com/les-plus-beaux-restaurants-branches-et-festifs-de-paris/'
+    url = 'http://scope.lefigaro.fr/restaurants/recherche/q/restaurant-gastronomique?page=10'
     response = VehiclesSpider.process(url)
     if response[:status] == :completed && response[:error].nil?
       flash.now[:notice] = "Successfully scraped url"
